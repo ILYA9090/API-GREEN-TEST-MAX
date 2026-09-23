@@ -1,8 +1,11 @@
+import { useMessagePolling } from "@/features/receive-messages";
 import { ChatSidebar } from "@/widgets/chat-sidebar";
 import { ChatWindow } from "@/widgets/chat-window";
 import cls from "./ChatPage.module.scss";
 
 export function ChatPage() {
+  useMessagePolling();
+
   return (
     <div className={cls.layout}>
       <ChatSidebar />

@@ -1,6 +1,11 @@
 import { useState, type SubmitEvent } from "react";
 import { useAppDispatch } from "@/app/store/hooks";
-import { chatAdded, useCheckAccountMutation } from "@/entities/chat";
+import {
+  activeChatSet,
+  chatAdded,
+  chatPhoneNumberSet,
+  useCheckAccountMutation,
+} from "@/entities/chat";
 
 export function useCreateChat() {
   const dispatch = useAppDispatch();
@@ -37,6 +42,10 @@ export function useCreateChat() {
           createdAt: Date.now(),
         }),
       );
+      dispatch(
+        chatPhoneNumberSet({ chatId: response.chatId, phoneNumber: trimmed }),
+      );
+      dispatch(activeChatSet(response.chatId));
       setPhoneNumber("");
     } catch {
       setError(
