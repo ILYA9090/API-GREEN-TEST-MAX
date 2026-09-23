@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, type SubmitEvent } from "react";
 import { useAppDispatch } from "@/app/store/hooks";
 import { chatAdded, useCheckAccountMutation } from "@/entities/chat";
 
@@ -8,7 +8,7 @@ export function useCreateChat() {
   const [error, setError] = useState<string | null>(null);
   const [checkAccount, { isLoading }] = useCheckAccountMutation();
 
-  const handleSubmit = async (event: FormEvent) => {
+  const handleSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const trimmed = phoneNumber.trim();

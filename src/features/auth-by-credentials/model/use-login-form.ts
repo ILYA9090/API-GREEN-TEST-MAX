@@ -8,7 +8,7 @@ export function useLoginForm() {
   const [apiTokenInstance, setApiTokenInstance] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (event: SubmitEvent) => {
+  const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const trimmedId = idInstance.trim();
