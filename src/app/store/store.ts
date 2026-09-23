@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { sessionReducer, saveSession } from "@/shared/auth";
-import { chatsReducer } from "@/entities/chat";
+import { chatsReducer, saveChats } from "@/entities/chat";
 import { greenApi } from "@/shared/api/green-api";
 
 export const store = configureStore({
@@ -14,7 +14,9 @@ export const store = configureStore({
 });
 
 store.subscribe(() => {
-  saveSession(store.getState().session);
+  const state = store.getState();
+  saveSession(state.session);
+  saveChats(state.chats);
 });
 
 export type RootState = ReturnType<typeof store.getState>;

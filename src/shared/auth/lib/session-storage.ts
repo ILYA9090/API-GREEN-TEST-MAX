@@ -1,22 +1,13 @@
 import type { SessionState } from "../model/session-slice";
+import { readFromStorage, writeToStorage } from "@/shared/lib/local-storage";
 
 const STORAGE_KEY = "green-api-session";
+const emptyState: SessionState = { idInstance: null, apiTokenInstance: null };
 
 export function loadSession(): SessionState {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw
-      ? (JSON.parse(raw) as SessionState)
-      : { idInstance: null, apiTokenInstance: null };
-  } catch {
-    return { idInstance: null, apiTokenInstance: null };
-  }
+  return readFromStorage(STORAGE_KEY, emptyState);
 }
 
 export function saveSession(session: SessionState): void {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
-  } catch {
-    //
-  }
+  writeToStorage(STORAGE_KEY, session);
 }
