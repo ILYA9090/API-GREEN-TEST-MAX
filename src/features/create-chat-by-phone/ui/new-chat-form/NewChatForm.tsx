@@ -1,4 +1,6 @@
 import type { ChangeEvent } from "react";
+import { Button } from "@/shared/ui";
+import PlusIcon from "@/shared/assets/icon/plus.svg?react";
 import { useCreateChat } from "../../model/use-create-chat";
 import cls from "./NewChatForm.module.scss";
 
@@ -14,12 +16,15 @@ export function NewChatForm() {
         onChange={(event: ChangeEvent<HTMLInputElement>) =>
           setPhoneNumber(event.target.value)
         }
-        placeholder="79991234567"
+        placeholder="Создание чата"
         autoComplete="off"
       />
-      <button type="submit" disabled={isLoading}>
-        {isLoading ? "..." : "Новый чат"}
-      </button>
+      <Button
+        type="submit"
+        icon={<PlusIcon />}
+        disabled={isLoading}
+        aria-label="Новый чат"
+      />
       {error && (
         <p role="alert" className={cls.error}>
           {error}

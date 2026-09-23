@@ -15,6 +15,7 @@ export function ChatSidebar() {
 
   return (
     <aside className={cls.sidebar}>
+      <h2 className={cls.title}>Чаты</h2>
       <NewChatForm />
       <div className={cls.list}>
         {chats.length === 0 ? (

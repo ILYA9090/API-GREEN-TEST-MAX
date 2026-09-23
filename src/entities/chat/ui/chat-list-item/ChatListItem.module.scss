@@ -1,6 +1,7 @@
 .item {
   display: flex;
   align-items: center;
+  gap: 12px;
   width: 100%;
   padding: 12px 16px;
   border: none;
@@ -8,7 +9,7 @@
   cursor: pointer;
   text-align: left;
   font-size: 14px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border);
 
   &:hover {
     background: #f5f5f5;
@@ -21,4 +22,5 @@
 
 .phone {
   font-weight: 500;
+  color: var(--color-text);
 }

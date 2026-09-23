@@ -1,6 +1,7 @@
 import type { ChangeEvent } from "react";
 import { useLoginForm } from "../model/use-login-form";
 import cls from "./LoginForm.module.scss";
+import { Button } from "@/shared/ui";
 
 export function LoginForm() {
   const {
@@ -14,7 +15,7 @@ export function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit} className={cls.form}>
-      <h1>Вход в MAX Messenger</h1>
+      <h1>Вход в MAX</h1>
 
       <label>
         idInstance
@@ -48,7 +49,7 @@ export function LoginForm() {
         </p>
       )}
 
-      <button type="submit">Войти</button>
+      <Button type="submit">Войти</Button>
     </form>
   );
 }

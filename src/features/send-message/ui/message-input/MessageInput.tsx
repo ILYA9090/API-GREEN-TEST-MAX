@@ -1,9 +1,11 @@
 import type { ChangeEvent } from "react";
+import { SendButton } from "../send-button/SendButton";
 import { useSendMessage } from "../../model/use-send-message";
 import cls from "./MessageInput.module.scss";
 
 export function MessageInput() {
   const { text, setText, error, isLoading, handleSubmit } = useSendMessage();
+  const hasText = text.trim().length > 0;
 
   return (
     <form onSubmit={handleSubmit} className={cls.form}>
@@ -19,12 +21,10 @@ export function MessageInput() {
           onChange={(event: ChangeEvent<HTMLInputElement>) =>
             setText(event.target.value)
           }
-          placeholder="Написать сообщение..."
+          placeholder="Сообщение"
           autoComplete="off"
         />
-        <button type="submit" disabled={isLoading || !text.trim()}>
-          {isLoading ? "..." : "Отправить"}
-        </button>
+        <SendButton visible={hasText} disabled={isLoading || !hasText} />
       </div>
     </form>
   );
