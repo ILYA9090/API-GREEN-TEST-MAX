@@ -1,17 +1,14 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { Chat, Message } from "./types";
+import { loadChats } from "../lib/chats-storage";
 
-interface ChatsState {
+export interface ChatsState {
   chats: Record<string, Chat>;
   messages: Record<string, Message[]>;
   activeChatId: string | null;
 }
 
-const initialState: ChatsState = {
-  chats: {},
-  messages: {},
-  activeChatId: null,
-};
+const initialState: ChatsState = loadChats();
 
 const chatsSlice = createSlice({
   name: "chats",
@@ -28,6 +25,9 @@ const chatsSlice = createSlice({
     activeChatSet: (state, action: PayloadAction<string>) => {
       state.activeChatId = action.payload;
     },
+    activeChatCleared: (state) => {
+      state.activeChatId = null;
+    },
     messageAdded: (
       state,
       action: PayloadAction<{ chatId: string; message: Message }>,
@@ -41,5 +41,6 @@ const chatsSlice = createSlice({
   },
 });
 
-export const { chatAdded, activeChatSet, messageAdded } = chatsSlice.actions;
+export const { chatAdded, activeChatSet, activeChatCleared, messageAdded } =
+  chatsSlice.actions;
 export const chatsReducer = chatsSlice.reducer;
