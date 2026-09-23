@@ -2,7 +2,7 @@
 
 Клиент для отправки и получения текстовых сообщений в мессенджере MAX через [GREEN-API](https://green-api.com/max). Тестовое задание на позицию "Фронтенд разработчик React".
 
-Демо: https://api-green-test-bqrma05t7-kachalochka99-4047s-projects.vercel.app/
+Демо: api-green-test-max.vercel.app
 
 ## Стек
 
