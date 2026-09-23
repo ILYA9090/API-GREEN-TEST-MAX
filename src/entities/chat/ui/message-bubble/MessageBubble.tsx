@@ -1,5 +1,5 @@
 import type { Message } from "../../model/types";
-import styles from "./MessageBubble.module.scss";
+import cls from "./MessageBubble.module.scss";
 
 interface MessageBubbleProps {
   message: Message;
@@ -8,12 +8,12 @@ interface MessageBubbleProps {
 export function MessageBubble({ message }: MessageBubbleProps) {
   const bubbleClass =
     message.direction === "outgoing"
-      ? `${styles.bubble} ${styles.bubble_outgoing}`
-      : styles.bubble;
+      ? `${cls.bubble} ${cls.bubble_outgoing}`
+      : cls.bubble;
 
   return (
     <div className={bubbleClass}>
-      <p className={styles.text}>{message.text}</p>
+      <p className={cls.text}>{message.text}</p>
     </div>
   );
 }
