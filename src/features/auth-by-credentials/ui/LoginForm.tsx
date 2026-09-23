@@ -13,12 +13,14 @@ export function LoginForm() {
     handleSubmit,
   } = useLoginForm();
 
+  const canSubmit =
+    idInstance.trim().length > 0 && apiTokenInstance.trim().length > 0;
+
   return (
     <form onSubmit={handleSubmit} className={cls.form}>
-      <h1>Войти MAX</h1>
+      <h1>Войти</h1>
 
       <label>
-        idInstance
         <input
           type="text"
           value={idInstance}
@@ -31,7 +33,6 @@ export function LoginForm() {
       </label>
 
       <label>
-        apiTokenInstance
         <input
           type="password"
           value={apiTokenInstance}
@@ -49,7 +50,9 @@ export function LoginForm() {
         </p>
       )}
 
-      <Button type="submit">Войти</Button>
+      <Button type="submit" disabled={!canSubmit} className={cls.submit}>
+        Войти
+      </Button>
     </form>
   );
 }

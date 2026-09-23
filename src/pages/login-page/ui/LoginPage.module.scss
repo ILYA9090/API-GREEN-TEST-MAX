@@ -4,4 +4,11 @@
   justify-content: center;
   min-height: 100vh;
   padding: 16px;
+  background-image:
+    url("@/shared/assets/pattern/chat-bg.svg"),
+    linear-gradient(135deg, #c9e8fb 0%, #6fc3ea 100%);
+  background-repeat: repeat, no-repeat;
+  background-size:
+    240px 240px,
+    cover;
 }

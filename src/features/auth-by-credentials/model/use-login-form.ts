@@ -15,7 +15,7 @@ export function useLoginForm() {
     const trimmedToken = apiTokenInstance.trim();
 
     if (!trimmedId || !trimmedToken) {
-      setError("Заполни оба поля");
+      setError("Заполните оба поля");
       return;
     }
 
