@@ -1,3 +1,4 @@
+import { Avatar } from "@/shared/ui";
 import type { Chat } from "../../model/types";
 import cls from "./ChatListItem.module.scss";
 
@@ -14,6 +15,7 @@ export function ChatListItem({ chat, isActive, onSelect }: ChatListItemProps) {
       className={isActive ? `${cls.item} ${cls.item_active}` : cls.item}
       onClick={() => onSelect(chat.chatId)}
     >
+      <Avatar label={chat.phoneNumber} />
       <span className={cls.phone}>{chat.phoneNumber}</span>
     </button>
   );

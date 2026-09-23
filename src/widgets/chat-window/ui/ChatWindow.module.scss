@@ -1,16 +1,28 @@
 .window {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-width: 0;
   height: 100%;
+  background-image:
+    url("@/shared/assets/pattern/chat-bg.svg"),
+    linear-gradient(135deg, #c9e8fb 0%, #6fc3ea 100%);
+  background-repeat: repeat, no-repeat;
+  background-size:
+    240px 240px,
+    cover;
 }
 
 .header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 16px;
-  border-bottom: 1px solid #eee;
-  background: #fff;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.name {
   font-weight: 600;
 }
 
@@ -21,12 +33,21 @@
   cursor: pointer;
   padding: 4px;
   line-height: 1;
+  color: var(--color-text);
 }
 
+.backIcon {
+  width: 24px;
+  height: 24px;
+}
 .messages {
   flex: 1;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   overflow-y: auto;
   padding: 16px;
   gap: 4px;
@@ -37,6 +58,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #999;
+  color: var(--color-text-secondary);
   font-size: 14px;
+  background-image:
+    url("@/shared/assets/pattern/chat-bg.svg"),
+    linear-gradient(135deg, #c9e8fb 0%, #6fc3ea 100%);
+  background-repeat: repeat, no-repeat;
+  background-size:
+    240px 240px,
+    cover;
 }

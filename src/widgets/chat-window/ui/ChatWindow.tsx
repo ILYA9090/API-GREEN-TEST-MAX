@@ -8,8 +8,9 @@ import {
   activeChatCleared,
 } from "@/entities/chat";
 import { MessageInput } from "@/features/send-message";
+import ArrowNarrowLeftIcon from "@/shared/assets/icon/arrowNarrowLeft.svg?react";
 import cls from "./ChatWindow.module.scss";
-
+import { Avatar } from "@/shared/ui";
 export function ChatWindow() {
   const dispatch = useAppDispatch();
   const activeChatId = useAppSelector(selectActiveChatId);
@@ -22,11 +23,7 @@ export function ChatWindow() {
   }, [messages.length]);
 
   if (!activeChatId) {
-    return (
-      <div className={cls.empty}>
-        <p>Выбери чат или создай новый</p>
-      </div>
-    );
+    return <div className={cls.empty} />;
   }
 
   return (
@@ -38,9 +35,10 @@ export function ChatWindow() {
           onClick={() => dispatch(activeChatCleared())}
           aria-label="Назад к списку чатов"
         >
-          ←
+          <ArrowNarrowLeftIcon className={cls.backIcon} />
         </button>
-        <span>{activeChat?.phoneNumber}</span>
+        {activeChat && <Avatar label={activeChat.phoneNumber} />}
+        <span className={cls.name}>{activeChat?.phoneNumber}</span>
       </header>
       <div className={cls.messages}>
         {messages.map((message) => (

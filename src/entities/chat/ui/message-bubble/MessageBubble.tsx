@@ -1,3 +1,4 @@
+import { formatMessageTime } from "@/shared/lib/format-time";
 import type { Message } from "../../model/types";
 import cls from "./MessageBubble.module.scss";
 
@@ -14,6 +15,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
   return (
     <div className={bubbleClass}>
       <p className={cls.text}>{message.text}</p>
+      <span className={cls.time}>{formatMessageTime(message.timestamp)}</span>
     </div>
   );
 }
