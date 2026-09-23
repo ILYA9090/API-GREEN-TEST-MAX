@@ -15,7 +15,7 @@ export function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit} className={cls.form}>
-      <h1>Вход в MAX</h1>
+      <h1>Войти MAX</h1>
 
       <label>
         idInstance
