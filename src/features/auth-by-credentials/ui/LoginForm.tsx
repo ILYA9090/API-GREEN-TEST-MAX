@@ -1,5 +1,6 @@
 import type { ChangeEvent } from "react";
 import { useLoginForm } from "../model/use-login-form";
+import cls from "./LoginForm.module.scss";
 
 export function LoginForm() {
   const {
@@ -12,8 +13,8 @@ export function LoginForm() {
   } = useLoginForm();
 
   return (
-    <form onSubmit={handleSubmit} className="login-form">
-      <h1>Вход в MAX</h1>
+    <form onSubmit={handleSubmit} className={cls.form}>
+      <h1>Вход в MAX Messenger</h1>
 
       <label>
         idInstance
@@ -23,7 +24,7 @@ export function LoginForm() {
           onChange={(event: ChangeEvent<HTMLInputElement>) =>
             setIdInstance(event.target.value)
           }
-          placeholder="310022743284"
+          placeholder="idInstance"
           autoComplete="off"
         />
       </label>
@@ -42,7 +43,7 @@ export function LoginForm() {
       </label>
 
       {error && (
-        <p role="alert" className="login-form__error">
+        <p role="alert" className={cls.error}>
           {error}
         </p>
       )}
