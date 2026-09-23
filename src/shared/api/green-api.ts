@@ -8,6 +8,14 @@ import {
 import type { RootState } from "@/app/store/store";
 import { computeApiUrl } from "@/shared/auth";
 
+function insertToken(url: string, apiTokenInstance: string): string {
+  const [pathPart, queryPart] = url.split("?");
+  const [methodName, ...rest] = pathPart.replace(/^\//, "").split("/");
+  const tail = rest.length ? `/${rest.join("/")}` : "";
+  const query = queryPart ? `?${queryPart}` : "";
+  return `/${methodName}/${apiTokenInstance}${tail}${query}`;
+}
+
 const dynamicBaseQuery: BaseQueryFn<
   string | FetchArgs,
   unknown,
@@ -31,8 +39,8 @@ const dynamicBaseQuery: BaseQueryFn<
 
   const preparedArgs: FetchArgs =
     typeof args === "string"
-      ? { url: `${args}/${apiTokenInstance}` }
-      : { ...args, url: `${args.url}/${apiTokenInstance}` };
+      ? { url: insertToken(args, apiTokenInstance) }
+      : { ...args, url: insertToken(args.url, apiTokenInstance) };
 
   return rawBaseQuery(preparedArgs, api, extraOptions);
 };

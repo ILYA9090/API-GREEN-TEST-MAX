@@ -3,6 +3,7 @@ export {
   activeChatSet,
   activeChatCleared,
   messageAdded,
+  chatPhoneNumberSet,
   chatsReducer,
 } from "./model/chats-slice";
 export {
