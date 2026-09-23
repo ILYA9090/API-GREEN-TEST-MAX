@@ -1,75 +1,38 @@
-# React + TypeScript + Vite
+# API-GREEN-TEST-MAX
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Клиент для отправки и получения текстовых сообщений в мессенджере MAX через [GREEN-API](https://green-api.com/max). Тестовое задание на позицию "Фронтенд разработчик React".
 
-Currently, two official plugins are available:
+Демо: https://api-green-test-bqrma05t7-kachalochka99-4047s-projects.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Стек
 
-## React Compiler
+React + TypeScript, Vite, Redux Toolkit + RTK Query, SCSS Modules, архитектура — Feature-Sliced Design.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Как запустить локально
 
-## Expanding the ESLint configuration
+Понадобится Node.js 18+ и уже настроенный инстанс GREEN-API для MAX (`idInstance` и `apiTokenInstance` — из [личного кабинета GREEN-API](https://console.green-api.com/); инстанс должен быть авторизован по QR-коду в приложении MAX, а в настройках инстанса включено "Получать уведомления о входящих сообщениях и файлах" — иначе получение сообщений работать не будет).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+git clone https://github.com/ILYA9090/API-GREEN-TEST-MAX.git
+cd API-GREEN-TEST-MAX
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Приложение откроется на `http://localhost:5173`. При первом запуске нужно ввести `idInstance` и `apiTokenInstance` от своего инстанса — они сохранятся в `localStorage` браузера, повторно вводить не придётся.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Сборка
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run build
 ```
+
+Собранные файлы появятся в `dist/`.
+
+## Как это работает
+
+1. Пользователь вводит номер телефона получателя - приложение проверяет наличие аккаунта MAX методом `CheckAccount` и получает `chatId`.
+2. Сообщения отправляются методом `SendMessage`.
+3. Входящие сообщения вычитываются фоновым циклом `ReceiveNotification`/`DeleteNotification`.
+
+Учётные данные GREEN-API живут только в `localStorage`.
