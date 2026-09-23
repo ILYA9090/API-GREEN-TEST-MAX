@@ -1,0 +1,49 @@
+import { useState, type FormEvent } from "react";
+import { useAppDispatch } from "@/app/store/hooks";
+import { chatAdded, useCheckAccountMutation } from "@/entities/chat";
+
+export function useCreateChat() {
+  const dispatch = useAppDispatch();
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [checkAccount, { isLoading }] = useCheckAccountMutation();
+
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+
+    const trimmed = phoneNumber.trim();
+
+    if (!/^\d{10,15}$/.test(trimmed)) {
+      setError("Номер — только цифры, с кодом страны (пример: 79991234567)");
+      return;
+    }
+
+    setError(null);
+
+    try {
+      const response = await checkAccount({
+        phoneNumber: Number(trimmed),
+      }).unwrap();
+
+      if (!response.exist) {
+        setError("У этого номера нет аккаунта в MAX");
+        return;
+      }
+
+      dispatch(
+        chatAdded({
+          chatId: response.chatId,
+          phoneNumber: trimmed,
+          createdAt: Date.now(),
+        }),
+      );
+      setPhoneNumber("");
+    } catch {
+      setError(
+        "Не удалось проверить номер — проверь соединение и попробуй ещё раз",
+      );
+    }
+  };
+
+  return { phoneNumber, setPhoneNumber, error, isLoading, handleSubmit };
+}
