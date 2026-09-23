@@ -1,0 +1,39 @@
+.form {
+  padding: 12px 16px;
+  border-top: 1px solid #eee;
+  background: #fff;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+
+  input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #d0d0d0;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background: #3b82f6;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: default;
+    }
+  }
+}
+
+.error {
+  margin: 0 0 8px;
+  color: #dc2626;
+  font-size: 13px;
+}
