@@ -1,6 +1,6 @@
 import { useState, type SubmitEvent } from "react";
-import { useAppDispatch } from "@/app/store/hooks";
 import { credentialsSet } from "@/shared/auth";
+import { useAppDispatch } from "@/shared/lib/store-hooks";
 
 export function useLoginForm() {
   const dispatch = useAppDispatch();

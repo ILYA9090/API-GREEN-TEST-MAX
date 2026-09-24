@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
-import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import { selectIsAuthenticated } from "@/shared/auth";
 import { chatAdded, messageAdded } from "@/entities/chat";
 import { receiveMessagesApi } from "../api/receive-notification-api";
+import { useAppDispatch, useAppSelector } from "@/shared/lib/store-hooks";
 
 export function useMessagePolling() {
   const dispatch = useAppDispatch();

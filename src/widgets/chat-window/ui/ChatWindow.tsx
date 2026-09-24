@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import {
   selectActiveChatId,
   selectMessagesForChat,
@@ -11,6 +10,7 @@ import { MessageInput } from "@/features/send-message";
 import ArrowNarrowLeftIcon from "@/shared/assets/icon/arrowNarrowLeft.svg?react";
 import cls from "./ChatWindow.module.scss";
 import { Avatar } from "@/shared/ui";
+import { useAppDispatch, useAppSelector } from "@/shared/lib/store-hooks";
 export function ChatWindow() {
   const dispatch = useAppDispatch();
   const activeChatId = useAppSelector(selectActiveChatId);

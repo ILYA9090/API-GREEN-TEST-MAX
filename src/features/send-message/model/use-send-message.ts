@@ -1,10 +1,10 @@
 import { useState, type SubmitEvent } from "react";
-import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import {
   messageAdded,
   selectActiveChatId,
   useSendMessageMutation,
 } from "@/entities/chat";
+import { useAppDispatch, useAppSelector } from "@/shared/lib/store-hooks";
 
 export function useSendMessage() {
   const dispatch = useAppDispatch();

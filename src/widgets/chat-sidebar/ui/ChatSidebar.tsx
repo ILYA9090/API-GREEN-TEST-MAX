@@ -1,4 +1,3 @@
-import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import {
   selectAllChats,
   selectActiveChatId,
@@ -7,6 +6,7 @@ import {
 } from "@/entities/chat";
 import { NewChatForm } from "@/features/create-chat-by-phone";
 import cls from "./ChatSidebar.module.scss";
+import { useAppDispatch, useAppSelector } from "@/shared/lib/store-hooks";
 
 export function ChatSidebar() {
   const dispatch = useAppDispatch();
